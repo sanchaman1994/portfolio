@@ -7,7 +7,9 @@
 	box-sizing: border-box;
 	font-family: "Roboto", sans-serif;
 }
-
+html {
+	scroll-behavior: smooth;
+}
 a {
 	text-decoration: none;
 }
@@ -20,6 +22,7 @@ a {
 
 section {
 	background-color: rgb(245, 245, 245);
+	transition: all 300ms ease;
 }
 
 .title {
@@ -105,6 +108,54 @@ textarea:focus {
 	border-color: #f06449;
 }
 
+nav,
+.scroll,
+.header {
+	opacity: 1;
+	visibility: visible;
+	transition: all 500ms 500ms;
+}
+
+.modal--open nav,
+.modal--open .scroll,
+.modal--open .header {
+	opacity: 0;
+	visibility: hidden;
+	transition: all 400ms;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.dark-theme .title,
+.dark-theme .section__title,
+.dark-theme .section__sub-title,
+.dark-theme .nav__link--anchor,
+.dark-theme .fa-adjust,
+.dark-theme .header__para {
+	color: white;
+}
+.dark-theme section {
+	background-color: #242424;
+}
+
+.dark-theme #personal-logo {
+	filter: none;
+}
+
+.dark-theme .scroll__icon {
+	border-color: white;
+}
+
+.dark-theme .scroll__icon:after,
+.dark-theme .link__hover-effect:after {
+	background-color: white;
+}
+.dark-theme .mail__btn {
+	background-color: white;
+	color: #242424;
+}
 /* END OF GENERIC SECTION */
 /*
 	landing page
@@ -185,9 +236,11 @@ li {
 	color: white;
 	border: none;
 	cursor: pointer;
-	position: absolute;
+	position: fixed;
 	bottom: 32px;
-	right: 40px;
+	right: 30px;
+	z-index: 10000;
+	box-shadow: 0 12px 30px 0 rgb(0, 0, 0, 0.2);
 }
 
 .scroll {
@@ -230,6 +283,7 @@ li {
 
 */
 .modal {
+	display: flex;
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -237,9 +291,15 @@ li {
 	width: 90%;
 	max-width: 1100px;
 	height: 500px;
-	box-shadow: 0 20px 80px rgb(0, 0, 0, 0.55);
 	overflow: hidden;
-	display: flex;
+	visibility: hidden;
+	transition: visibility 1s, z-index 1s, box-shadow 0.5s ease;
+	z-index: -1;
+}
+.modal--open .modal {
+	z-index: 60;
+	visibility: visible;
+	box-shadow: 0 20px 80px rgb(0, 0, 0, 0.55);
 }
 .modal__half {
 	width: 50%;
@@ -247,15 +307,24 @@ li {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	position: relative;
+	transition: all 400ms ease;
 }
-
 .modal__about {
 	background-color: rgb(245, 245, 245);
+	transform: translateX(-110%);
 }
+.modal--open .modal__about,
+.modal--open .modal__contact {
+	transform: translateX(0%);
+}
+
 .modal__contact {
 	background-color: #242424;
 	color: white;
+	transform: translateX(110%);
 }
+
 .modal__languages {
 	display: flex;
 	flex-wrap: wrap;
@@ -298,6 +367,43 @@ li {
 	bottom: -10px;
 	transform: scale(0);
 	transition: all 300ms ease;
+}
+.modal__overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	z-index: -1;
+}
+.modal__overlay--loading {
+	background-color: #242424;
+	font-size: 60px;
+}
+
+.modal__overlay--success {
+	background-color: #4bb543;
+	font-size: 40px;
+	font-weight: 700;
+	text-align: center;
+	padding: 20px;
+	z-index: -1;
+}
+.modal__overlay--visible {
+	z-index: 1;
+	display: flex;
+}
+.modal__exit {
+	cursor: pointer;
+	position: absolute;
+	top: 30px;
+	right: 40px;
+	color: white;
+	font-size: 36px;
+	z-index: 100;
 }
 
 /*
@@ -389,6 +495,7 @@ footer {
 	background-color: #242424;
 	display: flex;
 	padding: 6% 0;
+	position: relative;
 }
 
 .footer__logo--img {
@@ -434,4 +541,120 @@ footer {
 .form__submit:active {
 	border-color: #f06449;
 	color: #f06449;
+}
+
+.fa-spinner {
+	animation: spinner 750ms infinite linear;
+}
+
+@keyframes spinner {
+	0% {
+		transform: rotate(0);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+/* 
+	background annimation
+	shapes
+	 */
+
+.shape {
+	position: fixed;
+}
+
+.shape--0 {
+	top: 15vh;
+	left: 5vw;
+}
+.shape--1 {
+	top: 15vh;
+	left: 50vw;
+}
+.shape--2 {
+	top: 15vh;
+	left: 80vw;
+}
+
+/* row 2 */
+.shape--3 {
+	top: 50vh;
+	left: 5vw;
+}
+.shape--4 {
+	top: 50vh;
+	left: 50vw;
+}
+.shape--5 {
+	top: 50vh;
+	left: 80vw;
+}
+/* row 3 */
+.shape--6 {
+	top: 80vh;
+	left: 5vw;
+}
+.shape--7 {
+	top: 80vh;
+	left: 50vw;
+}
+.shape--8 {
+	top: 80vh;
+	left: 80vw;
+}
+
+/* 
+	RESPONSIVE CSS CODE
+*/
+
+/*  small phones , tables , large smart phones*/
+@media (max-width: 768px) {
+	.title {
+		font-size: 50px;
+	}
+	.header__para {
+		font-size: 20px;
+	}
+	.modal {
+		top: 0;
+		left: 0;
+		height: auto;
+		width: 100%;
+		transform: none;
+		flex-direction: column-reverse;
+		border-radius: 0;
+	}
+	.modal__half {
+		width: 100%;
+	}
+}
+
+/* small phone*/
+@media (max-width: 480px) {
+	.title {
+		font-size: 40px;
+	}
+	.header__para {
+		font-size: 18px;
+	}
+	.nav__link:first-child {
+		display: none;
+	}
+	.project__description--para {
+		display: none;
+	}
+	.project__descreption {
+		left: 0;
+		padding: 0;
+		width: 100%;
+		text-align: center;
+	}
+	.project__description--sub-title {
+		margin-bottom: 8px;
+	}
+	.modal__half {
+		padding: 30px;
+	}
 }
