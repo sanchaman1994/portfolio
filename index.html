@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./style.css" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap"
+			rel="stylesheet"
+		/>
+		<script
+			src="https://kit.fontawesome.com/1aa897d5dc.js"
+			crossorigin="anonymous"
+		></script>
+		<script
+			type="text/javascript"
+			src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+		></script>
+		<script type="text/javascript">
+			(function () {
+				emailjs.init("Gu2rnYOSq8BpLt9kd");
+			})();
+		</script>
+		<script src="./index.js" defer></script>
+		<title>Portfolio</title>
+	</head>
+	<body>
+		<section id="landing-page" onmousemove="moveBackground(event)">
+			<nav>
+				<figure>
+					<img id="personal-logo" src="./assets/logo.svg" alt="logo image" />
+				</figure>
+				<ul class="nav__link--list">
+					<li class="nav__link">
+						<a
+							href="#"
+							onclick="toggleModal()"
+							class="nav__link--anchor link__hover-effect"
+							>About</a
+						>
+					</li>
+					<li class="nav__link">
+						<a href="#" class="nav__link--anchor link__hover-effect">Project</a>
+					</li>
+					<li class="nav__link">
+						<a
+							href="#"
+							class="nav__link--anchor link__hover-effect"
+							onclick="toggleModal()"
+							>Contact</a
+						>
+					</li>
+					<li class="nav__link click" onclick="toggleContrast()">
+						<a href="#" class="nav__link--anchor link__hover-effect"
+							><i class="fa-solid fa-circle-half-stroke"></i
+						></a>
+					</li>
+				</ul>
+			</nav>
+			<header class="header">
+				<h1 class="title">Hey</h1>
+				<h2 class="sub_title orange">I'm Sanchaman.</h2>
+				<p class="header__para">
+					I'm a <b class="orange">Frontend Software Engineer</b> with a strong
+					passion for experiences. Here's a bit more
+					<b class="orange pointer" onclick="toggleModal()">about me</b>.
+				</p>
+				<div class="social__list">
+					<a href="" class="social__link click">
+						<i class="fa-brands fa-linkedin"></i>
+					</a>
+					<a
+						href="https://github.com/sanchaman1994"
+						target="_blank"
+						class="social__link click"
+					>
+						<i class="fa-brands fa-github"></i>
+					</a>
+					<a href="" class="social__link click">
+						<i class="fa-solid fa-file-pdf"></i>
+					</a>
+				</div>
+			</header>
+			<a href="#">
+				<button class="mail__btn click" onclick="toggleModal()">
+					<i class="fa-solid fa-envelope"></i>
+				</button>
+			</a>
+			<a href="#" class="scroll">
+				<div class="scroll__icon click"></div>
+			</a>
+			<div class="modal" id="modal">
+				<div class="modal__half modal__about">
+					<h3 class="modal__title modal__title--about">Here's bit about me</h3>
+					<h4 class="modal__sub-title modal__sub-title--about">
+						Frontend Software Engineer.
+					</h4>
+					<p class="modal__para">
+						I'm a 28 year old
+						<b class="orange">frontend software engineer</b> with a strong
+						passion for developing websites with great
+						<b class="orange">user experience</b>
+						<br />
+						I currently work on extremely difficult engineering problems and
+						learn from a team consisting of some of the most
+						<b class="orange">talanted</b> and
+						<b class="orange">experienced</b>" software engineers every day.
+					</p>
+					<div class="modal__languages">
+						<figure class="modal__language">
+							<img
+								class="modal__language--img"
+								src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/640px-HTML5_logo_and_wordmark.svg.png"
+								alt="HTML5"
+							/>
+							<span class="language__name"> HTML5 </span>
+						</figure>
+						<figure class="modal__language">
+							<img
+								class="modal__language--img"
+								src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/640px-CSS3_logo_and_wordmark.svg.png"
+								alt=""
+							/>
+							<span class="language__name"> CSS </span>
+						</figure>
+						<figure class="modal__language">
+							<img
+								class="modal__language--img"
+								src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/640px-Unofficial_JavaScript_logo_2.svg.png"
+								alt=""
+							/>
+							<span class="language__name"> JavaScript </span>
+						</figure>
+						<figure class="modal__language">
+							<img
+								class="modal__language--img"
+								src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
+								alt=""
+							/>
+							<span class="language__name"> React </span>
+						</figure>
+					</div>
+				</div>
+				<div class="modal__half modal__contact">
+					<i class="fas fa-times modal__exit click" onclick="toggleModal()"></i>
+					<h3 class="modal__title modal__title--contact">Let's have a chat</h3>
+					<h4 class="modal__sub-title modal__sub-title--contact">
+						I'm currently open to new opportunities.
+					</h4>
+					<form onsubmit="contact(event)" id="contact__form">
+						<div class="form__item">
+							<label class="form__item--label" for="name">Name</label>
+							<input type="text" class="input" name="user_name" required />
+						</div>
+						<div class="form__item">
+							<label class="form__item--label" for="Email">Email</label>
+							<input type="email" class="input" name="user_email" required />
+						</div>
+						<div class="form__item">
+							<label class="form__item--label" for="Message">Message</label>
+							<textarea
+								type="text"
+								class="input"
+								name="message"
+								required
+							></textarea>
+						</div>
+						<button id="contact__submit" class="form__submit">
+							Send it my way
+						</button>
+					</form>
+					<div class="modal__overlay modal__overlay--loading">
+						<li class="fas fa-spinner"></li>
+					</div>
+					<div class="modal__overlay modal__overlay--success">
+						Thanks for the message! looking forward to speaking to you.
+					</div>
+				</div>
+			</div>
+			<img src="./assets/semi circle.svg" class="shape shape--0" />
+			<img src="./assets/circle.svg" class="shape shape--1" />
+			<img src="./assets/squiggly.svg" class="shape shape--2" />
+			<img src="./assets/circle.svg" class="shape shape--3" />
+			<img src="./assets/triangle.svg" class="shape shape--4" />
+			<img src="./assets/semi circle.svg" class="shape shape--5" />
+			<img src="./assets/squiggly.svg" class="shape shape--6" />
+			<img src="./assets/triangle.svg" class="shape shape--7" />
+			<img src="./assets/semi circle.svg" class="shape shape--8" />
+		</section>
+		<section id="project">
+			<div class="container">
+				<div class="row">
+					<h1 class="section__title">
+						Here are some of my <span class="orange">projects</span>
+					</h1>
+					<ul class="project__list">
+						<li class="project">
+							<div class="project__wrapper">
+								<img
+									src="./assets/blinker mockup.png"
+									alt="project images"
+									class="project__image"
+								/>
+								<div class="project__wrapper--bg"></div>
+								<div class="project__descreption">
+									<h3 class="project__description--title">Car Sales Project</h3>
+									<h4 class="project__description--sub-title">
+										Html, CSS, javaScript, Vue, Vuex
+									</h4>
+									<p class="project__description--para">
+										Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+										Ipsa explicabo obcaecati labore quibusdam velit ab
+										necessitatibus maiores reiciendis? Eaque velit provident
+										tenetur. Vitae voluptates, sequi praesentium numquam
+										delectus repudiandae facere.
+									</p>
+									<div class="project__description--links">
+										<a
+											href="
+										"
+											class="project__description--link"
+										>
+											<i class="fa-brands fa-github"></i
+										></a>
+										<a
+											href="
+										"
+											class="project__description--link"
+										>
+											<i class="fas fa-link"></i
+										></a>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="project">
+							<div class="project__wrapper">
+								<img
+									src="./assets/blinker mockup.png"
+									alt="project images"
+									class="project__image"
+								/>
+								<div class="project__wrapper--bg"></div>
+								<div class="project__descreption">
+									<h3 class="project__description--title">Car Sales Project</h3>
+									<h4 class="project__description--sub-title">
+										Html, CSS, javaScript, Vue, Vuex
+									</h4>
+									<p class="project__description--para">
+										Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+										Ipsa explicabo obcaecati labore quibusdam velit ab
+										necessitatibus maiores reiciendis? Eaque velit provident
+										tenetur. Vitae voluptates, sequi praesentium numquam
+										delectus repudiandae facere.
+									</p>
+									<div class="project__description--links">
+										<a
+											href="
+										"
+											class="project__description--link"
+										>
+											<i class="fa-brands fa-github"></i
+										></a>
+										<a
+											href="
+										"
+											class="project__description--link"
+										>
+											<i class="fas fa-link"></i
+										></a>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+		<footer>
+			<div class="container">
+				<div class="row footer__row">
+					<figure>
+						<img src="./assets/logo.svg" class="footer__logo--img" alt="" />
+					</figure>
+					<div class="footer__social--list">
+						<a
+							href=""
+							target="_blank"
+							class="footer__social--link link__hover--link link__hover-effect link__hover-effect--white"
+							>Github</a
+						>
+						<a
+							href=""
+							target="_blank"
+							class="footer__social--link link__hover--link link__hover-effect link__hover-effect--white"
+							>Linkedin</a
+						>
+						<a
+							onclick="toggleModal()"
+							href="#"
+							target="_blank"
+							class="footer__social--link link__hover--link link__hover-effect link__hover-effect--white"
+							>Contact</a
+						>
+						<a
+							href=""
+							target="_blank"
+							class="footer__social--link link__hover--link link__hover-effect link__hover-effect--white"
+							>Resume</a
+						>
+					</div>
+					<div class="footer__copyright">
+						Copyright 2022 |
+						<span onclick="toggleModal()" class="click pointer"
+							>Sanchaman Subba
+						</span>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>
